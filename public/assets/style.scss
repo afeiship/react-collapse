@@ -1,0 +1,28 @@
+@import "@/components/style.scss";
+@import "~@feizheng/react-github-corner/dist/style.scss";
+@import "~@feizheng/react-sw-update-tips/dist/style.scss";
+
+
+.app-container {
+  border: 3px solid gray;
+  margin: 100px 50px 0;
+
+  .button {
+    background: #3cc51f;
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: #fff;
+    padding: 20px;
+    border: none;
+
+    &:active {
+      background: darken(#3cc51f, 10%);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

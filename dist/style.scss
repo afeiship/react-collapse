@@ -1,0 +1,39 @@
+$react-collapse-options: (
+  duration: 0.3s,
+) !default;
+
+.react-collapse {
+  $root: &;
+  $duration: map-get(
+    $map: $react-collapse-options,
+    $key: duration,
+  );
+
+  &__body {
+    overflow: hidden;
+    transition: max-height $duration;
+  }
+
+  &__summary {
+    user-select: none;
+    display: flex;
+    cursor: default;
+    align-items: center;
+    > .is-arrow {
+      transition: transform $duration;
+      font-size: 12px;
+      margin-right: 4px;
+      transform: rotate(90deg);
+    }
+  }
+
+  &[data-value="true"] {
+    #{$root}__summary > .is-arrow {
+      transform: rotate(0);
+    }
+
+    #{$root}__body {
+      max-height: 0 !important;
+    }
+  }
+}
