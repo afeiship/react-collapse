@@ -20,8 +20,9 @@ npm update @feizheng/react-collapse
 | Name      | Type   | Required | Default | Description                           |
 | --------- | ------ | -------- | ------- | ------------------------------------- |
 | className | string | false    | -       | The extended className for component. |
-| value     | object | false    | null    | The changed value.                    |
+| value     | bool   | false    | false   | The changed value.                    |
 | onChange  | func   | false    | noop    | The change handler.                   |
+| summary   | any    | false    | -       | The summary content.                  |
 
 
 ## usage
@@ -43,7 +44,7 @@ npm update @feizheng/react-collapse
   import './assets/style.scss';
 
   class App extends React.Component {
-    state = { hasUpdate: false };
+    state = { hasUpdate: false, value: false };
 
     componentDidMount() {
       NxOfflineSw.install({
@@ -56,8 +57,19 @@ npm update @feizheng/react-collapse
     render() {
       return (
         <div className="p-3 app-container">
-          <ReactCollapse className="bg-gray-800 mb-5 text-white" />
-          <button className="button">I am a button</button>
+          {/* Core components usage start */}
+          <p className="p-3 bg-gray-200 mb-2">value: {this.state.value + ''}</p>
+          <ReactCollapse
+            summary="道可道，非常道"
+            className="bg-gray-500 p-3"
+            onChange={(e) => {
+              this.setState({ value: e.target.value });
+            }}>
+            道可道，非常道；名可名，非常名。 无名，天地之始，有名，万物之母。
+            故常无欲，以观其妙，常有欲，以观其徼。
+            此两者，同出而异名，同谓之玄，玄之又玄，众妙之门。
+          </ReactCollapse>
+          {/* Core components usage end */}
           <ReactSwUpdateTips value={this.state.hasUpdate} />
           <ReactGithubCorner value="https://github.com/afeiship/react-collapse" />
         </div>
@@ -72,6 +84,9 @@ npm update @feizheng/react-collapse
 ## documentation
 - https://afeiship.github.io/react-collapse/
 
+## resources
+- https://css-tricks.com/using-css-transitions-auto-dimensions/
+- https://cdpn.io/brundolf/fullpage/mWWrOe
 
 ## license
 Code released under [the MIT license](https://github.com/afeiship/react-collapse/blob/master/LICENSE.txt).
