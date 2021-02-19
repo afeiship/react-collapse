@@ -8,12 +8,7 @@
 
 ## installation
 ```shell
-npm install -S @feizheng/react-collapse
-```
-
-## update
-```shell
-npm update @feizheng/react-collapse
+npm install -S @jswork/react-collapse
 ```
 
 ## properties
@@ -28,36 +23,30 @@ npm update @feizheng/react-collapse
 ## usage
 1. import css
   ```scss
-  @import "~@feizheng/react-collapse/dist/style.scss";
+  @import "~@jswork/react-collapse/dist/style.css";
+
+  // or use sass
+  @import "~@jswork/react-collapse/dist/style.scss";
 
   // customize your styles:
   $react-collapse-options: ()
   ```
 2. import js
   ```js
-  import NxOfflineSw from '@feizheng/next-offline-sw';
-  import ReactGithubCorner from '@feizheng/react-github-corner';
-  import ReactSwUpdateTips from '@feizheng/react-sw-update-tips';
+  import ReactDemokit from '@jswork/react-demokit';
   import React from 'react';
   import ReactDOM from 'react-dom';
-  import ReactCollapse from '@feizheng/react-collapse';
+  import ReactCollapse from '@jswork/react-collapse';
   import './assets/style.scss';
 
   class App extends React.Component {
-    state = { hasUpdate: false, value: false };
-
-    componentDidMount() {
-      NxOfflineSw.install({
-        onUpdateReady: () => {
-          this.setState({ hasUpdate: true });
-        }
-      });
-    }
+    state = { value: false };
 
     render() {
       return (
-        <div className="p-3 app-container">
-          {/* Core components usage start */}
+        <ReactDemokit
+          className="p-3 app-container"
+          url="https://github.com/afeiship/react-collapse">
           <p className="p-3 bg-gray-200 mb-2">value: {this.state.value + ''}</p>
           <ReactCollapse
             summary="道可道，非常道"
@@ -69,10 +58,7 @@ npm update @feizheng/react-collapse
             故常无欲，以观其妙，常有欲，以观其徼。
             此两者，同出而异名，同谓之玄，玄之又玄，众妙之门。
           </ReactCollapse>
-          {/* Core components usage end */}
-          <ReactSwUpdateTips value={this.state.hasUpdate} />
-          <ReactGithubCorner value="https://github.com/afeiship/react-collapse" />
-        </div>
+        </ReactDemokit>
       );
     }
   }
@@ -84,21 +70,18 @@ npm update @feizheng/react-collapse
 ## documentation
 - https://afeiship.github.io/react-collapse/
 
-## resources
-- https://css-tricks.com/using-css-transitions-auto-dimensions/
-- https://cdpn.io/brundolf/fullpage/mWWrOe
 
 ## license
 Code released under [the MIT license](https://github.com/afeiship/react-collapse/blob/master/LICENSE.txt).
 
-[version-image]: https://img.shields.io/npm/v/@feizheng/react-collapse
-[version-url]: https://npmjs.org/package/@feizheng/react-collapse
+[version-image]: https://img.shields.io/npm/v/@jswork/react-collapse
+[version-url]: https://npmjs.org/package/@jswork/react-collapse
 
-[license-image]: https://img.shields.io/npm/l/@feizheng/react-collapse
+[license-image]: https://img.shields.io/npm/l/@jswork/react-collapse
 [license-url]: https://github.com/afeiship/react-collapse/blob/master/LICENSE.txt
 
-[size-image]: https://img.shields.io/bundlephobia/minzip/@feizheng/react-collapse
+[size-image]: https://img.shields.io/bundlephobia/minzip/@jswork/react-collapse
 [size-url]: https://github.com/afeiship/react-collapse/blob/master/dist/react-collapse.min.js
 
-[download-image]: https://img.shields.io/npm/dm/@feizheng/react-collapse
-[download-url]: https://www.npmjs.com/package/@feizheng/react-collapse
+[download-image]: https://img.shields.io/npm/dm/@jswork/react-collapse
+[download-url]: https://www.npmjs.com/package/@jswork/react-collapse

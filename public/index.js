@@ -1,26 +1,17 @@
-import NxOfflineSw from '@feizheng/next-offline-sw';
-import ReactGithubCorner from '@feizheng/react-github-corner';
-import ReactSwUpdateTips from '@feizheng/react-sw-update-tips';
+import ReactDemokit from '@jswork/react-demokit';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactCollapse from '../src/main';
 import './assets/style.scss';
 
 class App extends React.Component {
-  state = { hasUpdate: false, value: false };
-
-  componentDidMount() {
-    NxOfflineSw.install({
-      onUpdateReady: () => {
-        this.setState({ hasUpdate: true });
-      }
-    });
-  }
+  state = { value: false };
 
   render() {
     return (
-      <div className="p-3 app-container">
-        {/* Core components usage start */}
+      <ReactDemokit
+        className="p-3 app-container"
+        url="https://github.com/afeiship/react-collapse">
         <p className="p-3 bg-gray-200 mb-2">value: {this.state.value + ''}</p>
         <ReactCollapse
           summary="道可道，非常道"
@@ -32,10 +23,7 @@ class App extends React.Component {
           故常无欲，以观其妙，常有欲，以观其徼。
           此两者，同出而异名，同谓之玄，玄之又玄，众妙之门。
         </ReactCollapse>
-        {/* Core components usage end */}
-        <ReactSwUpdateTips value={this.state.hasUpdate} />
-        <ReactGithubCorner value="https://github.com/afeiship/react-collapse" />
-      </div>
+      </ReactDemokit>
     );
   }
 }
