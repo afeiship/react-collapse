@@ -5,14 +5,25 @@ import React, { ReactNode, createRef, Component, HTMLAttributes } from 'react';
 // grid way: https://dev.to/alexandprivate/the-ultimate-collapsible-component-with-height-auto-detection-25pi
 
 const CLASS_NAME = 'react-collapse';
-const getElementRect = (el: HTMLElement): DOMRect => {
+const preloadImage = (src: string) =>
+  new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = resolve;
+    image.onerror = reject;
+    image.src = src;
+  });
+
+const getElementRect = async (el: HTMLElement): Promise<DOMRect> => {
   const clone = el.cloneNode(true) as HTMLElement;
+  const imgs = Array.from(clone.getElementsByTagName('img'));
+  await Promise.all(imgs.map((img) => preloadImage(img.src)));
   clone.style.cssText = 'position:fixed;top:0;left:0;max-height:unset;';
   document.body.append(clone);
   const rect = clone.getBoundingClientRect();
   clone.remove();
   return rect;
 };
+
 
 export type ReactCollapseProps = {
   /**
@@ -70,19 +81,19 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
     visible: this.props.visible,
   };
 
-  get elementRect() {
+  async getElementRect() {
     const { maxHeight } = this.props;
     if (maxHeight) return { height: maxHeight };
     const el = this.elementRef.current;
-    if (el) return getElementRect(el);
+    if (el) return await getElementRect(el);
     return null;
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { elementRef } = this;
     const el = elementRef.current;
     if (el) {
-      const rect = this.elementRect;
+      const rect = await this.getElementRect();
       if (!rect) console.warn('ReactCollapse: elementRect is null.');
       this.updateElementMaxHeight(rect?.height || 0);
     }
