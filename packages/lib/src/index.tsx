@@ -57,6 +57,13 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
   };
 
   private elementRef = createRef<HTMLDivElement>();
+  private updateElementMaxHeight = (maxHeight: number) => {
+    const el = this.elementRef.current;
+    if (el) {
+      el.style.maxHeight = `${maxHeight}px`;
+    }
+  };
+
   state = {
     collapsed: this.props.collapsed,
   };
@@ -75,13 +82,14 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
     if (el) {
       const rect = this.elementRect;
       if (!rect) console.warn('ReactCollapse: elementRect is null.');
-      el.style.maxHeight = rect?.height + 'px';
+      this.updateElementMaxHeight(rect?.height || 0);
     }
   }
 
   shouldComponentUpdate(nextProps: Readonly<ReactCollapseProps>): boolean {
-    const { collapsed } = nextProps;
+    const { maxHeight, collapsed } = nextProps;
     if (collapsed !== this.props.collapsed) this.setState({ collapsed });
+    if (maxHeight !== this.props.maxHeight) this.updateElementMaxHeight(maxHeight!);
     return true;
   }
 
