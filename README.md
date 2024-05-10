@@ -33,7 +33,7 @@ npm install -S @jswork/react-collapse
         </div>
         <h1>react-collapse</h1>
         <div className="y-3">
-          <ReactCollapse visible onChange={e => console.log(e)}
+          <ReactCollapse collapsed onChange={e => console.log(e)}
                          summary={<header className="cursor-pointer bg-gray-200 px-4 py-1">Header</header>}>
             <div className="p-5 rounded-md rounded-t-none bg-white">
               The Component.
@@ -41,7 +41,7 @@ npm install -S @jswork/react-collapse
           </ReactCollapse>
 
           <ReactCollapse
-            visible
+            collapsed
             onChange={e => console.log(e)}
             summary={
               <header className="cursor-pointer bg-gray-200 px-4 py-1">Header(slow element has bug)</header>
@@ -53,7 +53,7 @@ npm install -S @jswork/react-collapse
           </ReactCollapse>
 
           <ReactCollapse
-            visible
+            collapsed
             maxHeight={240}
             onChange={e => console.log(e)}
             summary={
