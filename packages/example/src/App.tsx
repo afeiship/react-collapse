@@ -9,11 +9,25 @@ function App() {
         Build Time: {BUILD_TIME}
       </div>
       <h1>react-collapse</h1>
-      <ReactCollapse collapsed handle={<header className="cursor-pointer bg-gray-200 px-4 py-1">Header</header>}>
-        <div className="p-5 rounded-md bg-white">
-          The Component.
-        </div>
-      </ReactCollapse>
+      <div className="y-3">
+        <ReactCollapse collapsed onChange={e => console.log(e)}
+                       toolbar={<header className="cursor-pointer bg-gray-200 px-4 py-1">Header</header>}>
+          <div className="p-5 rounded-md rounded-t-none bg-white">
+            The Component.
+          </div>
+        </ReactCollapse>
+
+        <ReactCollapse
+          collapsed
+          onChange={e => console.log(e)}
+          toolbar={
+            <header className="cursor-pointer bg-gray-200 px-4 py-1">Header(slow element has bug)</header>
+          }>
+          <div className="p-5 rounded-md rounded-t-none bg-green-100">
+            <img src="https://via.placeholder.com/500x200" alt="placeholder" />
+          </div>
+        </ReactCollapse>
+      </div>
     </div>
   );
 }

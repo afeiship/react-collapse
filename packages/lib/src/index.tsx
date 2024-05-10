@@ -1,4 +1,4 @@
-// import noop from '@jswork/noop';
+import noop from '@jswork/noop';
 import cx from 'classnames';
 import React, { ReactNode, createRef, Component, HTMLAttributes } from 'react';
 
@@ -24,13 +24,23 @@ export type ReactCollapseProps = {
    */
   collapsed?: boolean;
   /**
+   * The callback function when collapse status change.
+   * @param collapsed
+   */
+  onChange?: (collapsed: boolean) => void;
+  /**
+   * The max height of content.
+   * @default 0
+   */
+  maxHeight?: number;
+  /**
    * The children element.
    */
   children?: ReactNode;
   /**
    * The handle element.
    */
-  handle?: ReactNode;
+  toolbar?: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
 interface ReactCollapseState {
@@ -42,6 +52,8 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
   static version = '__VERSION__';
   static defaultProps = {
     collapsed: false,
+    onChange: noop,
+    maxHeight: 0,
   };
 
   private elementRef = createRef<HTMLDivElement>();
@@ -50,6 +62,8 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
   };
 
   get elementRect() {
+    const { maxHeight } = this.props;
+    if (maxHeight) return { height: maxHeight };
     const el = this.elementRef.current;
     if (el) return getElementRect(el);
     return null;
@@ -66,19 +80,20 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
   }
 
   shouldComponentUpdate(nextProps: Readonly<ReactCollapseProps>): boolean {
-    const { collapsed } = this.props;
-    if (collapsed !== nextProps.collapsed) {
-      this.setState({ collapsed: nextProps.collapsed });
-    }
+    const { collapsed } = nextProps;
+    if (collapsed !== this.props.collapsed) this.setState({ collapsed });
     return true;
   }
 
-  handleClick = () => {
-    this.setState({ collapsed: !this.state.collapsed });
+  handleToolbarClick = () => {
+    const { onChange } = this.props;
+    this.setState({ collapsed: !this.state.collapsed }, () => {
+      onChange?.(this.state.collapsed!);
+    });
   };
 
   render() {
-    const { className, children, handle, collapsed, ...rest } = this.props;
+    const { className, children, toolbar, collapsed, maxHeight, onChange, ...rest } = this.props;
     return (
       <div
         data-component={CLASS_NAME}
@@ -86,8 +101,8 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
         className={cx(CLASS_NAME, className)}
         {...rest}
       >
-        <header className={cx(`${CLASS_NAME}__handle`)} onClick={this.handleClick}>
-          {handle}
+        <header className={cx(`${CLASS_NAME}__toolbar`)} onClick={this.handleToolbarClick}>
+          {toolbar}
         </header>
         <div ref={this.elementRef} className={cx(`${CLASS_NAME}__body`)}>{children}</div>
       </div>
