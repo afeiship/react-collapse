@@ -1,0 +1,22 @@
+.react-collapse {
+  [hidden] {
+    display: none;
+  }
+
+  &__body {
+    overflow: hidden;
+    transition: max-height 0.3s;
+  }
+
+  &[data-collapsed="false"] {
+    .react-collapse__body {
+      max-height: initial;
+    }
+  }
+
+  &[data-collapsed="true"] {
+    .react-collapse__body {
+      max-height: 0 !important;
+    }
+  }
+}
