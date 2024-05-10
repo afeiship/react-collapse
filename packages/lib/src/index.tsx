@@ -106,7 +106,7 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
     return true;
   }
 
-  handleToolbarClick = () => {
+  handleSummaryClick = () => {
     const { onChange } = this.props;
     this.setState({ collapsed: !this.state.collapsed }, () => {
       onChange?.(this.state.collapsed!);
@@ -122,7 +122,7 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
         className={cx(CLASS_NAME, className)}
         {...rest}
       >
-        <div className={cx(`${CLASS_NAME}__summary`)} onClick={this.handleToolbarClick}>
+        <div className={cx(`${CLASS_NAME}__summary`)} onClick={this.handleSummaryClick}>
           {summary}
         </div>
         <article ref={this.elementRef} className={cx(`${CLASS_NAME}__body`)}>{children}</article>
