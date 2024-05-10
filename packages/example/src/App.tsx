@@ -27,6 +27,18 @@ function App() {
             <img src="https://via.placeholder.com/500x200" alt="placeholder" />
           </div>
         </ReactCollapse>
+
+        <ReactCollapse
+          collapsed
+          maxHeight={240}
+          onChange={e => console.log(e)}
+          toolbar={
+            <header className="cursor-pointer bg-gray-200 px-4 py-1">Header(directly set maxHeight)</header>
+          }>
+          <div className="p-5 rounded-md rounded-t-none bg-green-100">
+            <img src="https://via.placeholder.com/500x200" alt="placeholder" />
+          </div>
+        </ReactCollapse>
       </div>
     </div>
   );
