@@ -105,17 +105,17 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
   render() {
     const { className, children, summary, visible, maxHeight, onChange, ...rest } = this.props;
     return (
-      <div
+      <section
         data-component={CLASS_NAME}
         data-visible={this.state.visible}
         className={cx(CLASS_NAME, className)}
         {...rest}
       >
-        <header className={cx(`${CLASS_NAME}__summary`)} onClick={this.handleToolbarClick}>
+        <div className={cx(`${CLASS_NAME}__summary`)} onClick={this.handleToolbarClick}>
           {summary}
-        </header>
-        <div ref={this.elementRef} className={cx(`${CLASS_NAME}__body`)}>{children}</div>
-      </div>
+        </div>
+        <article ref={this.elementRef} className={cx(`${CLASS_NAME}__body`)}>{children}</article>
+      </section>
     );
   }
 }
