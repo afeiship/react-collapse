@@ -18,7 +18,7 @@ nx.declare({
       const docApp = fs.readFileSync('./packages/example/src/App.tsx').toString();
 
       nx.replaceInFile('README.md', [
-        ['__GENERATE_DAPP__', indentString(docApp, 2)],
+        ['__GENERATE_DAPP__', indentString(docApp, 2).trimEnd()],
         ['@jswork/react-collapse/src', '@jswork/react-collapse'],
         ['src/style.scss', 'dist/style.scss'],
       ]);

@@ -56,7 +56,6 @@ npm install -S @jswork/react-collapse
   }
 
   export default App;
-
   ```
 
 ## preview
