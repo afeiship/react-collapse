@@ -32,15 +32,15 @@ export type ReactCollapseProps = {
    */
   className?: string;
   /**
-   * Whether to show the content.
+   * Whether to collapse or not.
    * @default false
    */
-  visible?: boolean;
+  collapsed?: boolean;
   /**
    * The callback function when collapse status change.
-   * @param visible
+   * @param collapsed
    */
-  onChange?: (visible: boolean) => void;
+  onChange?: (collapsed: boolean) => void;
   /**
    * The max height of content.
    * @default 0
@@ -57,14 +57,14 @@ export type ReactCollapseProps = {
 } & HTMLAttributes<HTMLDivElement>;
 
 interface ReactCollapseState {
-  visible?: boolean;
+  collapsed?: boolean;
 }
 
 export default class ReactCollapse extends Component<ReactCollapseProps, ReactCollapseState> {
   static displayName = CLASS_NAME;
   static version = '__VERSION__';
   static defaultProps = {
-    visible: false,
+    collapsed: false,
     onChange: noop,
     maxHeight: 0,
   };
@@ -78,7 +78,7 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
   };
 
   state = {
-    visible: this.props.visible,
+    collapsed: this.props.collapsed,
   };
 
   async getElementRect() {
@@ -100,25 +100,25 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
   }
 
   shouldComponentUpdate(nextProps: Readonly<ReactCollapseProps>): boolean {
-    const { maxHeight, visible } = nextProps;
-    if (visible !== this.props.visible) this.setState({ visible });
+    const { maxHeight, collapsed } = nextProps;
+    if (collapsed !== this.props.collapsed) this.setState({ collapsed });
     if (maxHeight !== this.props.maxHeight) this.updateElementMaxHeight(maxHeight!);
     return true;
   }
 
   handleToolbarClick = () => {
     const { onChange } = this.props;
-    this.setState({ visible: !this.state.visible }, () => {
-      onChange?.(this.state.visible!);
+    this.setState({ collapsed: !this.state.collapsed }, () => {
+      onChange?.(this.state.collapsed!);
     });
   };
 
   render() {
-    const { className, children, summary, visible, maxHeight, onChange, ...rest } = this.props;
+    const { className, children, summary, collapsed, maxHeight, onChange, ...rest } = this.props;
     return (
       <section
         data-component={CLASS_NAME}
-        data-visible={this.state.visible}
+        data-collapsed={this.state.collapsed}
         className={cx(CLASS_NAME, className)}
         {...rest}
       >
