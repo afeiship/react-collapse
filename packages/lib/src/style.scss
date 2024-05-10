@@ -8,13 +8,13 @@
     transition: max-height 0.3s;
   }
 
-  &[data-collapsed="false"] {
+  &[data-visible="false"] {
     .react-collapse__body {
       max-height: initial;
     }
   }
 
-  &[data-collapsed="true"] {
+  &[data-visible="true"] {
     .react-collapse__body {
       max-height: 0 !important;
     }
