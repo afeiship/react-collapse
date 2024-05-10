@@ -24,7 +24,8 @@ function App() {
             <header className="cursor-pointer bg-gray-200 px-4 py-1">Header(slow element has bug)</header>
           }>
           <div className="p-5 rounded-md rounded-t-none bg-green-100">
-            <img src="https://via.placeholder.com/500x200" alt="placeholder" />
+            {/*<img width={500} height={200} src="https://via.placeholder.com/500x200" alt="placeholder" />*/}
+            <img width={500} height={200} src="https://via.placeholder.com/500x200" alt="placeholder" />
           </div>
         </ReactCollapse>
 
