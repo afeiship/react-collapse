@@ -2,6 +2,8 @@ import noop from '@jswork/noop';
 import cx from 'classnames';
 import React, { ReactNode, createRef, Component, HTMLAttributes } from 'react';
 
+// grid way: https://dev.to/alexandprivate/the-ultimate-collapsible-component-with-height-auto-detection-25pi
+
 const CLASS_NAME = 'react-collapse';
 const getElementRect = (el: HTMLElement): DOMRect => {
   const clone = el.cloneNode(true) as HTMLElement;
