@@ -47,10 +47,6 @@ export type ReactCollapseProps = {
    */
   maxHeight?: number;
   /**
-   * The children element.
-   */
-  children?: ReactNode;
-  /**
    * The summary element.
    */
   summary?: ReactNode;
