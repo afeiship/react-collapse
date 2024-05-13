@@ -5,18 +5,20 @@
 
   &__body {
     overflow: hidden;
-    transition: max-height 0.3s;
+    transition: max-height 0.3s, opacity 0.3s;
   }
 
   &[data-collapsed="false"] {
     .react-collapse__body {
       max-height: initial;
+      opacity: 1;
     }
   }
 
   &[data-collapsed="true"] {
     .react-collapse__body {
       max-height: 0 !important;
+      opacity: 0;
     }
   }
 }
