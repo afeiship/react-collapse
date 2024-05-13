@@ -50,7 +50,7 @@ export type ReactCollapseProps = {
    * The summary element.
    */
   summary?: ReactNode;
-} & HTMLAttributes<HTMLDivElement>;
+} & Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>;
 
 interface ReactCollapseState {
   collapsed?: boolean;
