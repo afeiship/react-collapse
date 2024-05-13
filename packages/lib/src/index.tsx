@@ -77,6 +77,16 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
     collapsed: this.props.collapsed,
   };
 
+  get summaryView() {
+    const { summary } = this.props;
+    if (!summary) return null;
+    return (
+      <div className={cx(`${CLASS_NAME}__summary`)} onClick={this.handleSummaryClick}>
+        {summary}
+      </div>
+    );
+  }
+
   async getElementRect() {
     const { maxHeight } = this.props;
     if (maxHeight) return { height: maxHeight };
@@ -118,9 +128,7 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
         className={cx(CLASS_NAME, className)}
         {...rest}
       >
-        <div className={cx(`${CLASS_NAME}__summary`)} onClick={this.handleSummaryClick}>
-          {summary}
-        </div>
+        {this.summaryView}
         <article ref={this.elementRef} className={cx(`${CLASS_NAME}__body`)}>{children}</article>
       </section>
     );
