@@ -1,23 +1,25 @@
 .react-collapse {
-  [hidden] {
-    display: none;
-  }
-
   &__body {
-    overflow: hidden;
-    transition: max-height 0.3s, opacity 0.3s;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+
+    > .react-collapse__content {
+      overflow: hidden;
+    }
   }
 
   &[data-collapsed="false"] {
     .react-collapse__body {
-      max-height: initial;
+      grid-template-rows: 1fr;
       opacity: 1;
     }
   }
 
   &[data-collapsed="true"] {
     .react-collapse__body {
-      max-height: 0 !important;
+      grid-template-rows: 0fr;
       opacity: 0;
     }
   }
