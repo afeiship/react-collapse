@@ -10,6 +10,12 @@
     }
   }
 
+  &[readonly]{
+    .react-collapse__summary {
+      cursor: default;
+    }
+  }
+
   &[data-collapsed="false"] {
     .react-collapse__body {
       grid-template-rows: 1fr;

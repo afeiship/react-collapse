@@ -18,6 +18,11 @@ export type ReactCollapseProps = {
    */
   collapsed?: boolean;
   /**
+   * Whether to set read-only or not.
+   * @default false
+   */
+  readOnly?: boolean;
+  /**
    * The callback function when collapse status change.
    * @param collapsed
    */
@@ -37,6 +42,7 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
   static version = '__VERSION__';
   static defaultProps = {
     collapsed: false,
+    readOnly: false,
     onChange: noop,
   };
 
@@ -45,8 +51,9 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
   };
 
   get summaryView() {
-    const { summary } = this.props;
+    const { summary, readOnly } = this.props;
     if (!summary) return null;
+    if (readOnly) return summary;
     return (
       <div className={cx(`${CLASS_NAME}__summary`)} onClick={this.handleSummaryClick}>
         {summary}

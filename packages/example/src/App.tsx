@@ -23,9 +23,22 @@ function App() {
           collapsed={val}
           onChange={e => console.log('value: ', e)}
           summary={
-            <header className="cursor-pointer bg-gray-200 px-4 py-1">Header(summaryNode)</header>
+            <header className="bg-gray-200 px-4 py-1">Header(summaryNode)</header>
           }>
           <div className="p-5 rounded-md rounded-t-none bg-green-100">
+            {/*<img width={500} height={200} src="https://via.placeholder.com/500x200" alt="placeholder" />*/}
+            <img src="https://via.placeholder.com/500x200" alt="placeholder" />
+          </div>
+        </ReactCollapse>
+
+        <ReactCollapse
+          readOnly
+          onChange={e => console.log('value: ', e)}
+          summary={
+            <header className="bg-gray-200 px-4 py-1">Header(summaryNode/readOnly)</header>
+          }>
+          <div className="p-5 rounded-md rounded-t-none bg-green-100">
+            <h1>Read Only</h1>
             {/*<img width={500} height={200} src="https://via.placeholder.com/500x200" alt="placeholder" />*/}
             <img src="https://via.placeholder.com/500x200" alt="placeholder" />
           </div>
