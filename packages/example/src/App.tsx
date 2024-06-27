@@ -1,10 +1,20 @@
 import ReactCollapse from '@jswork/react-collapse/src';
+import ReactSelection from '@jswork/react-selection';
+import cx from 'classnames';
 import './index.css';
 import '@jswork/react-collapse/src/style.scss';
 import { useEffect, useState } from 'react';
 
 function App() {
   const [val, setVal] = useState(false);
+  const [v1, setV1] = useState('apple');
+
+  const items = [
+    { value: 'apple', title: 'Apple', children: 'Apple' },
+    { value: 'banana', title: 'Banana', children: 'Banana' },
+    { value: 'orange', title: 'Orange', children: 'Orange' },
+    { value: 'grape', title: 'Grape', children: 'Grape' },
+  ];
 
   useEffect(() => {
     setTimeout(() => {
@@ -43,6 +53,31 @@ function App() {
             <img src="https://via.placeholder.com/500x200" alt="placeholder" />
           </div>
         </ReactCollapse>
+
+        <hr />
+        <ReactSelection
+          value={v1}
+          onChange={e => setV1(e)}
+          items={items}
+          template={({ item, index }, options) => {
+            return (
+              <ReactCollapse
+                key={index}
+                collapsed={v1 !== item.value}
+                summary={
+                  <header
+                    onClick={options?.cb}
+                    className="bg-gray-200 px-4 py-1">
+                    {item.title}
+                  </header>
+                }
+              >
+                {item.children} - CHILDREN.
+              </ReactCollapse>
+            );
+          }}
+          className="y-4"
+        />
       </div>
     </div>
   );

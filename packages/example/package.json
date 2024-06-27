@@ -18,6 +18,7 @@
     "@jswork/next-replace-in-file": "^1.0.0",
     "@jswork/presets-tailwind": "^1.0.33",
     "@jswork/react-collapse": "^1.0.0",
+    "@jswork/react-selection": "^1.0.8",
     "@jswork/simple-date-format": "^1.0.5",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
