@@ -46,6 +46,14 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
     return true;
   }
 
+  handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
+    const { onChange } = this.props;
+    const { value } = this.state;
+    if (e.propertyName === 'opacity') {
+      onChange?.(Boolean(value));
+    }
+  };
+
   render() {
     const { className, children, value, onChange, ...rest } = this.props;
     return (
@@ -53,6 +61,7 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
         data-component={CLASS_NAME}
         data-collapsed={this.state.value}
         className={cx(CLASS_NAME, className)}
+        onTransitionEnd={this.handleTransitionEnd}
         {...rest}
       >
         <div className={`${CLASS_NAME}__content`}>
