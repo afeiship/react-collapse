@@ -1,4 +1,3 @@
-import noop from '@jswork/noop';
 import cx from 'classnames';
 import React, { Component, HTMLAttributes } from 'react';
 
@@ -33,7 +32,6 @@ export default class ReactCollapse extends Component<ReactCollapseProps, ReactCo
   static version = '__VERSION__';
   static defaultProps = {
     value: false,
-    onChange: noop,
   };
 
   state = {
