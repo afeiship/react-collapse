@@ -41,31 +41,19 @@ npm install -S @jswork/react-collapse
           Build Time: {BUILD_TIME}
         </div>
         <h1>react-collapse</h1>
-        <div className="y-3">
-          <ReactCollapse
-            collapsed={val}
-            onChange={e => console.log('value: ', e)}
-            summary={
-              <header className="bg-gray-200 px-4 py-1">Header(summaryNode)</header>
-            }>
-            <div className="p-5 rounded-md rounded-t-none bg-green-100">
-              {/*<img width={500} height={200} src="https://via.placeholder.com/500x200" alt="placeholder" />*/}
-              <img src="https://via.placeholder.com/500x200" alt="placeholder" />
-            </div>
-          </ReactCollapse>
-
-          <ReactCollapse
-            readOnly
-            onChange={e => console.log('value: ', e)}
-            summary={
-              <header className="bg-gray-200 px-4 py-1">Header(summaryNode/readOnly)</header>
-            }>
-            <div className="p-5 rounded-md rounded-t-none bg-green-100">
-              <h1>Read Only</h1>
-              {/*<img width={500} height={200} src="https://via.placeholder.com/500x200" alt="placeholder" />*/}
-              <img src="https://via.placeholder.com/500x200" alt="placeholder" />
-            </div>
-          </ReactCollapse>
+        <div className="y-2">
+          <button className="btn btn-primary btn-sm w-full" onClick={() => setVal(!val)}>Toggle - {String(val)}</button>
+          <div className="y-3">
+            <ReactCollapse
+              value={val}
+              onChange={e => console.log('value: ', e)}
+            >
+              <div className="p-5 rounded-md rounded-t-none bg-green-100">
+                <img width="200" src="https://pic.rmb.bdstatic.com/7f7a8d7b247d3aa430010f10a5765239.jpeg"
+                     alt="placeholder" />
+              </div>
+            </ReactCollapse>
+          </div>
         </div>
       </div>
     );
